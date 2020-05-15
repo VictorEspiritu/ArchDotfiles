@@ -1,0 +1,16 @@
+#!/bin/bash
+
+
+
+# command to list resolutions: > gtf
+# list output available: > find /sys/devices -name "edit"
+# check output connect: > /sys/devices/pci............................../card0/card0-HDMI-A-1/status
+
+# set full screen default
+
+xrandr --newmode "1360x768_60.02" 84.74 1360 1424 1568 1776 768 769 772 795 -HSync +Vsync
+xrandr --addmode Virtual-1 "1360x768_60.02" 
+xrandr --output Virtual-1 --primary --mode "1360x768_60.02" --pos 0x0 --rotate normal
+
+setxkbmap latam
+
