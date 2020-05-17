@@ -5,64 +5,82 @@
 ! |____/ |_|  	
 
 
-Xft.dpi: 96
-Xft.antialias: true
-Xft.hinting: true
-Xft.rgba: rgb
-Xft.autohint: true
-Xft.hintstyle: hintfull
-Xft.lcdfilter: lcdfilter
 
-XTerm*renderFont: true
-XTerm*faceName: xft:Mononoki Nerd Font
-XTerm*faceSize: 12
-XTerm*utf8: 2
-XTerm*locale: true
+!!Xft.dpi: 96
+!!Xft.antialias: true
+!!Xft.hinting: true
+!!Xft.rgba: rgb
+!!Xft.autohint: true
+!!Xft.hintstyle: hintfull
+!!Xft.lcdfilter: lcdfilter
 
-XTerm.vt100.translations: #override \n\
-  Ctrl <Key> j: smaller-vt-font() \n\
-  Ctrl <Key> k: larger-vt-font()
+!!XTerm*renderFont: true
+!!XTerm*faceName: xft:UbuntuMono Nerd Font
+!!XTerm*faceSize: 18
+!!XTerm*utf8: 2
+!!XTerm*locale: true
+
+!!XTerm.vt100.translations: #override \n\
+!!  Ctrl <Key> j: smaller-vt-font() \n\
+!!  Ctrl <Key> k: larger-vt-font()
 
 
 ! Every shell is a login shell by default (for inclusion of all necessary environment variables)
-XTerm*loginshell: true
+!!XTerm*loginshell: true
 
 ! I like a LOT of scrollback...
-XTerm*savelines: 16384
+!!XTerm*savelines: 16384
 
 ! double-click to select whole URLs :D
-XTerm*charClass: 33:48,36-47:48,58-59:48,61:48,63-64:48,95:48,126:48
+!!XTerm*charClass: 33:48,36-47:48,58-59:48,61:48,63-64:48,95:48,126:48
 
+
+!!Customer URxvt
 URxvt*imLocale: en_US.UTF-8
 URxvt*termName: rxvt-unicode-256color
-Urxvt*buffered: false
+!!URxvt*buffered: false
 URxvt.intensityStyles: false
-URxvt.font: xft:Mononoki Nerd Font:size=13, \
-            xft:JoyPixels:size=13, \
-            xft:Monospace:style=Medium:size=13   
+URxvt.depth: 24
+URxvt.font: xft:Roboto Mono:size=10
+!!URxvt.boldFont: xft:Roboto Mono Bold
+!!URxvt.italicFont: xft:Roboto Mono Italic
+!!URxvt.boldItalicFont: xft:Roboto Mono Bold Italic
 URxvt.saveLines: 2000
+URxvt.letterSpace:-1
 URxvt.scrollBar: false
 URxvt.cursorColor: white
+URxvt.cursorBlink: true
+URxvt.iconFile: /usr/share/icons/Adwaita/scalable/devices/audio-headset-symbolic.svg
 
 !! Extensions
 URxvt.perl-ext-common: default,matcher,resize-font,url-select,keyboard-select,clipboard
-URxvt.colorUL: #4682B4
+URxvt.colorUL: #19D3D6
 !! url-select
 URxvt.keysym.M-u: perl:url-select:select_next
 URxvt.url-select.launcher: urxvt -e lynx -cfg=~/.lynx.cfg -lss=~/.lynx.lss
 URxvt.url-select.underline: true
 !! keyboard-select:
 URxvt.keysym.M-Escape: perl:keyboard-select:activate
+URxvt.keyboard-select.clipboard: true
 !! resize-font
 URxvt.resize-font.smaller: C-j
 URxvt.resize-font.bigger:  C-k
 !! Matcher
-URxvt.url-launcher:	urxvt -e lynx -cfg=~/.lynx.cfg -lss=~/.lynx.lss
+URxvt.url-launcher: urxvt -e lynx -cfg=~/.lynx.cfg -lss=~/.lynx.lss
 URxvt.matcher.button: 1
 !!clipboard
 URxvt.keysym.M-c: perl:clipboard:copy
 URxvt.keysym.M-v: perl:clipboard:paste
-URxvt*depth: 32
+!!URxvt.keysym.M-C-v: perl:clipboard:paste_escaped
+!URxvt.keysym.Shift-Control-c: perl:clipboard:copy
+!URxvt.keysym.Shitf-Control-v: perl:clipboard:paste
+!!URxvt.keysym.C-M-c: perl:clipboard:copy
+!!URxvt.keysym.C-M-v: perl:clipboard:paste
+!!URxvt.keysym.Shift-Control-v: eval:clipboard:copy
+!!URxvt.keysym.Shift-Control-c: eval:clipboard:paste
+!!URxvt.iso14755: false
+!!URxvt*depth: 32
+
 
 
 ! Dracula Xresources palette
@@ -78,8 +96,9 @@ XTerm*background: #292d3e
 XTerm*cursorColor: #bbc5ff
 
 ! black
-*.color0:       #101010  !! originally #292d3e
-*.color8:       #434758
+!!*.color0:       #101010  !! originally #292d3e
+!!*.color0:	pink
+!!*.color8:       #434758
 
 ! red
 *.color1:       #f07178
@@ -89,7 +108,7 @@ XTerm*cursorColor: #bbc5ff
 *.color2:       #c3e88d
 *.color10:      #ddffa7
 
-! yellow
+! yellow:
 *.color3:       #ffcb6b
 *.color11:      #ffe585
 

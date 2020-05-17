@@ -1,16 +1,39 @@
 #!/bin/bash
 
+#set full scree default
+
+xrandr --newmode "1360x768_60.02" 84.74 1360 1424 1568 1776 768 769 772 795 -HSync +Vsync  
+xrandr --addmode Virtual-1 "1360x768_60.02"  
+xrandr --output Virtual-1 --primary --mode "1360x768_60.02" --pos 0x0 --rotate normal 
+
+#set keymboard
+#setxkbmap latam
+setxkbmap us 
+
+#validad init file .Xresources
+usrresource=$HOME/.Xresources
+sysresource=/etc/x11/xinit/.Xresource
+xinitbase=/etc/X11/xinit/xinitrc.d
+
+if [ -f $sysresource ]; then
+	xrdb -merge $sysresource
+fi
+
+if [ -f $usrresource ]; then
+	xrdb -merge $usrresource
+fi
+
+#Run basic programs
+if [ -d $xinitbase ]; then
+	for f in $xinitbase/?*.sh ; do
+		[ -x "$f" ] && . "$f"
+	done
+	unset f
+fi
+
+#urxvt &
+urxvtd -q -o -f 
+urxvtc 
 
 
-# command to list resolutions: > gtf
-# list output available: > find /sys/devices -name "edit"
-# check output connect: > /sys/devices/pci............................../card0/card0-HDMI-A-1/status
-
-# set full screen default
-
-xrandr --newmode "1360x768_60.02" 84.74 1360 1424 1568 1776 768 769 772 795 -HSync +Vsync
-xrandr --addmode Virtual-1 "1360x768_60.02" 
-xrandr --output Virtual-1 --primary --mode "1360x768_60.02" --pos 0x0 --rotate normal
-
-setxkbmap latam
 
