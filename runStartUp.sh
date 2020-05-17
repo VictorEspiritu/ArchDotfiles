@@ -46,6 +46,55 @@ sudo pacman -S ttf-roboto-mono
 #Install Font Icons
 sudo pacman -S ttf-font-awesome 
 
+#Icon wesomw:
+clock: 
+refresh:
+main: 
+net:
+music:
+code: 
+git: 
+cube: 
+desktop: 
+cube2: 
+twitter: 
+dragon: 
+email: 
+file: 
+zip: 
+image:
+fire:
+folder: 
+huella:
+font:
+gema:
+net-globo:
+hard-disk:
+headphones:
+headphones2:
+heart:
+inbox:
+image:
+images:
+infinity:
+laptop:
+laptop-code:
+hoja:
+microphone:
+mobile:
+phone:
+play:
+podcast:
+terminal:
+tv:
+university:
+wifi:
+yinyang:
+
+
+
+
+
 
 
 
