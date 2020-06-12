@@ -1,0 +1,12 @@
+let g:netrw_dirhistmax  =10
+let g:netrw_dirhistcnt =5
+let g:netrw_dirhist_5='/projects/js/nodejs/node_mongodb'
+let g:netrw_dirhist_4='/projects/js/nodejs'
+let g:netrw_dirhist_3='/projects/js/nodejs/node_mongodb'
+let g:netrw_dirhist_2='/projects/js/nodejs/node_mongodb/node_modules'
+let g:netrw_dirhist_1='/projects/js/nodejs/node_mongodb'
+let g:netrw_dirhist_0='/projects/js/nodejs'
+let g:netrw_dirhist_9='/projects/js'
+let g:netrw_dirhist_8='/projects'
+let g:netrw_dirhist_7='/'
+let g:netrw_dirhist_6='/projects'

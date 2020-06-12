@@ -8,7 +8,7 @@
 #
 # Permission is hereby granted, free of charge, to any person obtaining a copy
 # of this software and associated documentation files (the "Software"), to deal
-    # in the Software without restriction, including without limitation the rights
+# in the Software without restriction, including without limitation the rights
 # to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
 # copies of the Software, and to permit persons to whom the Software is
 # furnished to do so, subject to the following conditions:
@@ -47,6 +47,7 @@ with open(path.join(theme_path, "colors.json")) as f:
 # Icon of theme
 img = {}
 img_path = path.join(theme_path, "img")
+icon_layout = path.join(qtile_path, "icons")
 
 for i in listdir(img_path):
     img[i.split(".")[0]] = path.join(img_path, i)
@@ -54,6 +55,8 @@ for i in listdir(img_path):
 
 mod = "mod4"
 myTerm="/usr/bin/urxvt"
+myIDE="/usr/bin/idea/bin/idea.sh"
+
 
 keys = [
     Key(
@@ -122,24 +125,50 @@ keys = [
         desc='Run command bar'
         ),
     Key(
-        [mod], "m",
+        [mod, "shift"], "m",
         lazy.to_screen(0),
         desc='Keyboard focus to monitor1'
         ),
     Key(
-        [mod], "n",
+        [mod, "shift"], "n",
         lazy.to_screen(1),
         desc='Keyboard focus to monitor2'
-        )
+        ),
+    Key(
+        [mod], "f",
+        lazy.spawn(myTerm + " -e ranger"),
+        desc='File Manager'
+        ),
+    Key(
+        [mod], "n",
+        lazy.layout.normalize(),
+        desc='Normalize window size ratios'
+        ),
+    Key(
+        [mod], "m",
+        lazy.layout.maximize(),
+        desc='Toggle window betwwen minimin and maximum sizes'
+        ),
+     Key(
+         [mod], "d",
+         lazy.spawn(myIDE),
+         desc='Launches My IDE intellij'
+         ),
+     Key(
+         [mod], "v",
+         lazy.spawn("code"),
+         desc='Launches My IDE intellij'
+         )
 ]
 
 group_names = [
-        ('WWW', {'layout': 'monadtall'}),
+        ('WWW', {'layout': 'max'}),
         ('DEV', {'layout': 'monadtall'}),
         ('SYS', {'layout': 'monadtall'}),
-        ('DOC', {'layout': 'monadtall'}),
-        ('FS',  {'layout': 'monadtall'}),
-        ('MEDIA', {'layout': 'floating'})
+        ('TRM', {'layout': 'matrix'}),
+        ('FSY', {'layout': 'monadwide'}),
+        ('MDA', {'layout': 'stack'}),
+        ('DCS', {'layout': 'floating'})
         ]
 
 groups = [Group(name, **kwargs) for name, kwargs in group_names]
@@ -158,7 +187,7 @@ layout_conf= {
 
 layouts = [
     layout.Max(**layout_conf),
-    layout.Stack(num_stacks=2),
+    layout.Stack(num_stacks=2, **layout_conf),
     layout.MonadTall(**layout_conf),
     layout.MonadWide(**layout_conf),
     layout.Matrix(columns=2, **layout_conf),
@@ -201,13 +230,13 @@ w_group_box = {
 
 w_window_name = {
     **w_base_color(fg = 'primary'),
-    'font': 'Ubuntu Bold',
+    'font': 'Ubuntu',
     'fontsize': 11,
     'padding': 5
 }
 
 w_systray = {
-    'background': colors['dark'],
+    'background': colors['light'],
     'padding': 5
 }
 
@@ -218,13 +247,13 @@ w_text_box = {
 }
 
 w_pacman = {
-    'execute': 'urxvt',
+    'execute': 'urxvtc',
     'update_interval': 1800
 }
 
 w_net = {
-    'interface': 'wlp2s0',
-    'format': '{down} ↓↑ {up}'
+    'interface': 'enp0s3',
+    'format': '{down} '
 }
 
 w_current_layout_icon = {
@@ -236,8 +265,37 @@ w_current_layout = {
 }
 
 w_clock = {
-    'format': '%d/%m/%Y - %H:%M '
+    'format': '%d/%m/%Y-%H:%M '
 }
+
+w_memory = {
+    'padding': 5,
+ #   'foreground': colors['light'],
+    'background': colors['secondary']
+}
+
+w_cpu = {
+     'padding': 5,
+  #   'foreground': colors['light'],
+     'background': colors['primary'],
+#     'fmt': 'cpu:{use}%',
+}
+
+w_disk = {         
+      'padding': 5,                  
+   #   'foreground': colors['light'],
+#      'background': colors['secondary'],
+      'measure': 'G',
+      'partition': '/'
+}
+
+w_volume = {
+    'foreground': colors['light'],
+    'background': colors['dark'],
+    'padding': 5
+}
+
+
 
 # Conf of Workspace with widgets
 def wk_workspaces_base():
@@ -245,31 +303,61 @@ def wk_workspaces_base():
         widget.Sep(**w_separator),
         widget.GroupBox(**w_group_box),
         widget.Sep(**w_separator),
-        widget.WindowName(**w_window_name)
+        widget.WindowName(**w_window_name),
+        widget.Prompt(),
+        widget.Memory(**w_memory),
+        widget.CPU(**w_cpu),
     ]
 
 def wk_powerline_base():
     return [
         widget.CurrentLayoutIcon(**w_base_color(bg='secondary'), **w_current_layout_icon),
-        widget.CurrentLayout(**w_base_color(bg='secondary'), **w_current_layout),
-        widget.Image(filename = img['primary']),
-        widget.TextBox(**w_base_color(bg='primary'), **w_text_box, text =' 🕒' ),
-        widget.Clock(**w_base_color(bg='primary'), **w_clock)
+        #widget.CurrentLayout(**w_base_color(bg='secondary'), **w_current_layout),
+        #widget.Volume(**w_volume),
+        #widget.Image(filename = img['primary']),
+        #widget.Clock(**w_base_color(bg='primary'), **w_clock),
+        #widget.TextBox(**w_base_color(bg='primary'), **w_text_box, text ='' ),
+        #widget.Clock(**w_base_color(bg='primary'), **w_clock)
     ]
 
 screen_primary = {
-    *wk_workspaces_base(),
-    widget.Sep(**w_separator),
-    widget.Systray(**w_systray),
-    widget.Sep(**w_separator),
-    widget.Image(filename = img['bg-to-secondary']),
-    widget.TextBox(**w_base_color(bg = 'secondary'), **w_text_box, text=' ⟳'),
-    widget.Pacman(**w_base_color(bg = 'secondary'), **w_pacman),
-    widget.Image(filename = img['primary']),
-    widget.TextBox(**w_base_color(bg = 'primary'), **w_text_box, text=' ↯'),
-    widget.Net(**w_base_color(bg = 'primary'), **w_net),
-    widget.Image(filename = img['secondary']),
-    *wk_powerline_base()
+    #*wk_workspaces_base(),
+     widget.Sep(**w_separator),
+     widget.GroupBox(**w_group_box),
+     widget.Sep(**w_separator),
+     widget.WindowName(**w_window_name),
+     widget.Sep(**w_separator),
+     widget.Prompt(),
+     #widget.Sep(**w_separator),
+     #widget.Memory(**w_memory),
+     #widget.Sep(**w_separator),
+     #widget.CPU(**w_cpu),
+     #widget.Sep(**w_separator),
+
+    #widget.Sep(**w_separator),
+    #widget.Systray(**w_systray),
+    #widget.Sep(**w_separator),
+    #widget.Image(filename = img['bg-to-secondary']),
+        #widget.Memory(**w_memory),
+    #widget.TextBox(**w_base_color(bg = 'secondary'), **w_text_box, text=''),
+    #widget.Pacman(**w_base_color(bg = 'secondary'), **w_pacman),
+    #widget.Image(filename = img['primary']),
+    #widget.TextBox(**w_base_color(bg = 'primary'), **w_text_box, text='')
+    #widget.Sep(**w_separator),
+    #widget.Image(filename = img['primary']),
+    #widget.Sep(**w_separator),
+        #widget.CPU(**w_cpu),
+    #widget.Image(filename = img['secondary']),
+    #widget.DF(),
+    #widget.Image(filename = img['bg-to-primary']),
+    
+    #widget.Net(**w_base_color(bg = 'secondary'), **w_net),
+    #widget.Sep(**w_separator),
+    #widget.Image(filename = img['secondary']),
+        #*wk_powerline_base()
+    widget.CurrentLayoutIcon(**w_base_color(bg='secondary'), **w_current_layout_icon),
+    #widget.Clock(**w_base_color(bg='primary'), **w_clock),
+
 }
 
 screen_secondary = {
@@ -287,7 +375,7 @@ widget_defaults = dict(
 extension_defaults = widget_defaults.copy()
 
 screens = [
-    Screen(top = bar.Bar(screen_primary, 24, opacity=0.95))
+    Screen(top = bar.Bar(screen_primary, 24, opacity=0.5))
 ]
 
 #screens = [
@@ -311,7 +399,8 @@ screens = [
 
 # Drag floating layouts.
 mouse = [
-    Drag([mod], "Button1", lazy.window.set_position_floating(),
+#    Drag([mod], "Button1", lazy.window.set_position_floating(),
+    Drag([mod], "Button1", lazy.window.set_position(),
          start=lazy.window.get_position()),
     Drag([mod], "Button3", lazy.window.set_size_floating(),
          start=lazy.window.get_size()),
@@ -340,7 +429,9 @@ floating_layout = layout.Floating(float_rules=[
     {'wname': 'branchdialog'},  # gitk
     {'wname': 'pinentry'},  # GPG key password entry
     {'wmclass': 'ssh-askpass'},  # ssh-askpass
-])
+],
+ border_focus=colors['secondary'][0]
+)
 auto_fullscreen = True
 focus_on_window_activation = "smart"
 

@@ -188,4 +188,3 @@ URxvt.font: xft:DejaVu Sans Mono for Powerline:autohint=true:size=10, \
 # In ~/.zshrc
 # add prompt hack: prompt_context() {}
 
-
