@@ -1,5 +1,19 @@
 #!/bin/bash
 
+
+# =================== BOOT
+
+# list Mount Point
+lsblk
+
+# list system file with size
+
+df -h 
+
+# Show size of a directory
+du -sh /directory
+
+
 # ================== DISPLAY
 
 # list resolution available with: > xrandr
