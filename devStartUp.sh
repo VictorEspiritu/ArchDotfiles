@@ -50,3 +50,14 @@ sudo pacman -S code
 # Command to check TLS certificate connection
  gnutls-cli www.my.webpage.to.test </dev/null
 
+# Install ssh-keygem
+ sudo pacman -S openssh
+
+# Install browser-syn to desing web 
+sudo npm i -g browser-sync
+
+# Configuration alias in ~/.zshrc
+export LOCAL_IP=`ip route get 8.8.8.8 | head -1 | cut -d' ' -f7`                                               
+alias serve="browser-sync start -s -f . --no-notify --host $LOCAL_IP --port 9000"
+
+
