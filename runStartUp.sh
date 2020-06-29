@@ -13,6 +13,34 @@ df -h
 # Show size of a directory
 du -sh /directory
 
+# ==================== RESIZE HARD DISK 
+# 1.- Increase Physics hard disk: from 20Gb to 60Gb
+#     1.1- In VirtualBox execute command: VBoxManager --modifyhd 61440 /path/to/vdi   
+# 2.- Expand Partition with cfdisk tool
+#     2.1- Reboot OS or VM with ISO Arch in Live Mode Booteable (fisrt option) and list partition 
+#     > lsblk
+#       sda      8:0    0    60G  0 disk 
+#       ├─sda1   8:1    0    15G  0 part 
+#       └─sda2   8:2    0     5G  0 part 
+#     2.2- Into Arch Live Mode execute command: cfdisk
+#           2.2.1- Delete partition /dev/sda2 
+#           2.2.2- Resize partition /dev/sda1 to 55G
+#           2.2.3- Create partition /dev/sda2 in 5G
+#           2.2.4- List partition
+#               sda      8:0    0    60G  0 disk 
+#               ├─sda1   8:1    0    55G  0 part 
+#               └─sda2   8:2    0     5G  0 part
+#           2.2.5- Update partition table with command: genfstab -U /mnt > /mnt/etc/fstab
+#     2.3 Format new partition with command:>  mkfs.ext4 /dev/sda2
+# 3.- Expand FileSystem and mount device 
+#     3.1- Scand file and blocks with: e2fsck -f /dev/sda1 and  e2fsck -f /dev/sda2 
+#     3.2- Resize filesystem with: resize2fs /dev/sda1 and resize2fs /dev/sda1
+#     3.3- Create folder to mount: mkdir /mnt and mkdir /mnt/esev
+#           3.3.1- Mount devices: mount /dev/sda1 /mnt and mount /dev/sda2 /mnt/esev 
+#     3.4- list filesystem size with command: df -h
+#           /dev/sda1         55G    13G   39G  26% /
+#           /dev/sda2        4,9G    21M  4,6G   1% /esev
+#     3.5- Change root in the new system and reboot OS with command: arch-chroot /mnt 
 
 # ================== DISPLAY
 
@@ -61,52 +89,6 @@ sudo pacman -S ttf-roboto-mono
 
 #Install Font Icons
 sudo pacman -S ttf-font-awesome 
-
-#Icon wesomw:
-clock: 
-refresh:
-main: 
-net:
-music:
-code: 
-git: 
-cube: 
-desktop: 
-cube2: 
-twitter: 
-dragon: 
-email: 
-file: 
-zip: 
-image:
-fire:
-folder: 
-huella:
-font:
-gema:
-net-globo:
-hard-disk:
-headphones:
-headphones2:
-heart:
-inbox:
-image:
-images:
-infinity:
-laptop:
-laptop-code:
-hoja:
-microphone:
-mobile:
-phone:
-play:
-podcast:
-terminal:
-tv:
-university:
-wifi:
-yinyang:
-
 
 #To extensions widget install gcc and psutil
 sudo pacman -S gcc

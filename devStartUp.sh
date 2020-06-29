@@ -60,4 +60,6 @@ sudo npm i -g browser-sync
 export LOCAL_IP=`ip route get 8.8.8.8 | head -1 | cut -d' ' -f7`                                               
 alias serve="browser-sync start -s -f . --no-notify --host $LOCAL_IP --port 9000"
 
+# Encode base64
+echo -n 'victor26:12345'| openssl base64 
 
