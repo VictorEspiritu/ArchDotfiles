@@ -50,8 +50,12 @@ sudo pacman -S code
 # Command to check TLS certificate connection
  gnutls-cli www.my.webpage.to.test </dev/null
 
-# Install ssh-keygem
- sudo pacman -S openssh
+# Install Openssh to remote connection and ssh-keygem
+sudo pacman -S openssh
+sudo systemctl start  sshd.service # start daemon
+ssh localhost # test remote connection
+
+
 
 # Install browser-syn to desing web 
 sudo npm i -g browser-sync
