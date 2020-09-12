@@ -13,7 +13,12 @@ Plug 'xuyuanp/nerdtree-git-plugin'
 Plug 'neoclide/coc.nvim', {'branch': 'release'}
 Plug 'ryanoasis/vim-devicons'
 Plug 'gko/vim-coloresque' " Muestra el color del codigo 
-Plug 'prettier/vim-prettier', {'do': 'yarn install'}
+Plug 'prettier/vim-prettier', {'do': 'yarn install'} " Formato code pretty
+Plug 'honza/vim-snippets' " Snippets to code 
+Plug 'uiiaoo/java-syntax.vim' "Muestra mas colores en la sintaxis de java 
+Plug 'tpope/vim-commentary' "Comentar y descomentar codigo
+Plug 'mikelue/vim-maven-plugin' "Plugin for maven 
+Plug 'neoclide/coc-pyls'
 
 call plug#end()
 
@@ -57,7 +62,9 @@ let g:coc_global_extensions = [
   \ 'coc-tsserver',
   \ 'coc-eslint', 
   \ 'coc-prettier', 
-  \ 'coc-json', 
+  \ 'coc-json',
+  \ 'coc-java', 
+  \ 'coc-lists', 
   \ ]
 
 " TextEdit might fail if hidden is not set.
@@ -112,27 +119,6 @@ else
   inoremap <expr> <cr> pumvisible() ? "\<C-y>" : "\<C-g>u\<CR>"
 endif
 
-" Use `[g` and `]g` to navigate diagnostics
-nmap <silent> [g <Plug>(coc-diagnostic-prev)
-nmap <silent> ]g <Plug>(coc-diagnostic-next)
-
-" GoTo code navigation.
-nmap <silent> gd <Plug>(coc-definition)
-nmap <silent> gy <Plug>(coc-type-definition)
-nmap <silent> gi <Plug>(coc-implementation)
-nmap <silent> gr <Plug>(coc-references)
-
-" Use K to show documentation in preview window.
-nnoremap <silent> K :call <SID>show_documentation()<CR>
-
-function! s:show_documentation()
-  if (index(['vim','help'], &filetype) >= 0)
-    execute 'h '.expand('<cword>')
-  else
-    call CocAction('doHover')
-  endif
-endfunction
-
 " Highlight the symbol and its references when holding the cursor.
 autocmd CursorHold * silent call CocActionAsync('highlight')
 
@@ -155,11 +141,6 @@ augroup end
 " Example: `<leader>aap` for current paragraph
 xmap <leader>a  <Plug>(coc-codeaction-selected)
 nmap <leader>a  <Plug>(coc-codeaction-selected)
-
-" Remap keys for applying codeAction to the current buffer.
-nmap <leader>ac  <Plug>(coc-codeaction)
-" Apply AutoFix to problem on the current line.
-nmap <leader>qf  <Plug>(coc-fix-current)
 
 " Map function and class text objects
 " NOTE: Requires 'textDocument.documentSymbol' support from the language server.
@@ -191,31 +172,116 @@ command! -nargs=0 OR   :call     CocAction('runCommand', 'editor.action.organize
 " provide custom statusline: lightline.vim, vim-airline.
 set statusline^=%{coc#status()}%{get(b:,'coc_current_function','')}
 
-" Mappings using CoCList:
-" Show all diagnostics.
-nnoremap <silent> <space>a  :<C-u>CocList diagnostics<cr>
-" Manage extensions.
-nnoremap <silent> <space>e  :<C-u>CocList extensions<cr>
-" Show commands.
-nnoremap <silent> <space>c  :<C-u>CocList commands<cr>
-" Find symbol of current document.
-nnoremap <silent> <space>o  :<C-u>CocList outline<cr>
-" Search workspace symbols.
-nnoremap <silent> <space>s  :<C-u>CocList -I symbols<cr>
-" Do default action for next item.
-nnoremap <silent> <space>j  :<C-u>CocNext<CR>
-" Do default action for previous item.
-nnoremap <silent> <space>k  :<C-u>CocPrev<CR>
-" Resume latest coc list.
-nnoremap <silent> <space>p  :<C-u>CocListResume<CR>
-
 " ========================================================== END COC CONFIG
+noremap <C-S> :update<CR>
 
+augroup codecompilerun
+
+    nnoremap <F9> :call <SID>compile_code()<CR>
+    nnoremap <F10> : call <SID>run_code()<CR>
+    nnoremap <silent>mc :Mvn! clean<CR>
+    nnoremap <silent>mp :Mvn! clean package<CR>
+    nnoremap <silent>mi :Mvn! clean install<CR>
+    nnoremap <silent>mt :Mvn! clean test<CR>
+    
+    function! s:compile_code()                 
+       execute "update"                            
+       if (&filetype == 'java')                    
+           ":set makeprg=javac\ %                   
+           "execute 'make'
+           execute "Mvn! compile"    
+        elseif (&filetype == 'go')
+           execute "!go build %"
+       endif
+    endfunction
+
+    function! s:run_code()
+        if (&filetype == 'java')
+           "execute '!java -cp %:p:h %:t:r'
+            execute "!./mvnw spring-boot:run"
+            "execute "Mvn! clean install"   
+         elseif (&filetype == 'javascript')
+            execute "!node\ %"
+        elseif (&filetype == 'python')
+            execute "!python %"
+        elseif (&filetype == 'go')
+            execute "!go run %"
+        elseif (&filetype == 'sh')
+            execute "!bash %"
+        elseif (&filetype == 'html')
+            execute "!vimb %"
+        elseif (&filetype == 'txt')
+            execute "!cat %"
+        endif 
+    endfunction
+augroup end
+
+augroup idecode
+    " Go to next and before buffer 
+    nnoremap <silent> gn :bn<CR>
+    nnoremap <silent> ga :bp<CR>
+    " Format code Ctrl-F 
+    nnoremap <C-A> :Format<CR>
+    " Fix imports Ctrl-I 
+    nnoremap <C-I> :OR<CR>
+    " Code Action Alt-Insert 
+    nnoremap <A-CR> :CocList actions<CR>
+    " Code Word Action Alt-Enter
+    nmap <silent> ce <Plug>(coc-codeaction)
+    " Show list errors     
+    nnoremap <silent> co :copen<CR>
+    nnoremap <silent> cx :cclose<CR>
+    nnoremap <silent> cf :cfirst<CR>
+    nnoremap <silent> cl :clast<CR>
+    nnoremap <silent> cn :cnext<CR>
+    nnoremap <silent> cm :cprevious<CR>
+    " Use `[g` and `]g` to navigate diagnostics
+    nmap <silent> [g <Plug>(coc-diagnostic-prev)
+    nmap <silent> ]g <Plug>(coc-diagnostic-next)
+    " GoTo code navigation.
+    nmap <silent> gd <Plug>(coc-definition)
+    nmap <silent> gy <Plug>(coc-type-definition)
+    nmap <silent> gi <Plug>(coc-implementation)
+    nmap <silent> gr <Plug>(coc-references)
+    " Use K to show documentation in preview window.
+    nnoremap <silent> K :call <SID>show_documentation()<CR>
+    " Mappings using CoCList: Show all diagnostics.
+    nnoremap <silent> <space>d  :<C-u>CocList diagnostics<cr>
+    nnoremap <silent> <space>e  :<C-u>CocList extensions<cr>
+    nnoremap <silent> <space>c  :<C-u>CocList commands<cr>
+    nnoremap <silent> <space>o  :<C-u>CocList outline<cr>
+    nnoremap <silent> <space>s  :<C-u>CocList -I symbols<cr>
+    nnoremap <silent> <space>j  :<C-u>CocNext<CR>
+    nnoremap <silent> <space>k  :<C-u>CocPrev<CR>
+    nnoremap <silent> <space>p  :<C-u>CocListResume<CR>
+    nnoremap <silent> <space>l  :<C-u>CocList<CR>
+    " Remap keys for applying codeAction to the current buffer.
+    nmap <leader>ac  <Plug>(coc-codeaction)
+    " Apply AutoFix to problem on the current line.
+    nmap <leader>qf  <Plug>(coc-fix-current)
+    
+    function! s:show_documentation()
+      if (index(['vim','help'], &filetype) >= 0)
+        execute 'h '.expand('<cword>')
+      else
+        call CocAction('doHover')
+      endif
+    endfunction
+
+augroup end
+
+" =========================================================== END IDE CONFIG 
+
+set errorformat=%A%f:%l:\ %m,%-Z%p^,%-C%.%#
 set encoding=UTF-8
 set clipboard=unnamedplus
 
 :set number
-:set tabstop=4
-:set shiftwidth=4
+:set tabstop=3
+:set shiftwidth=3
 :set expandtab
+
+set autoread
+set spelllang=en,es "Corrige palabras usando diccionarios de ingles y espanol
+au FocusGained * :checktime
 

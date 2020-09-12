@@ -1,0 +1,8 @@
+{
+    "java.codeGeneration.generateComments": true,
+    "java.completion.guessMethodArguments": true,
+    "java.referencesCodeLens.enabled": true,
+    "java.signatureHelp.enabled": true,
+    "java.codeGeneration.toString.codeStyle": "STRING_BUILDER"  ,
+    "python.jediEnabled":true
+}

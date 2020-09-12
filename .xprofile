@@ -2,9 +2,14 @@
 
 #set full scree default
 
-xrandr --newmode "1360x768_60.02" 84.74 1360 1424 1568 1776 768 769 772 795 -HSync +Vsync  
-xrandr --addmode Virtual-1 "1360x768_60.02"  
-xrandr --output Virtual-1 --primary --mode "1360x768_60.02" --pos 0x0 --rotate normal 
+#xrandr --newmode "1360x768_60.02" 84.74 1360 1424 1568 1776 768 769 772 795 -HSync +Vsync  
+#xrandr --addmode Virtual-1 "1360x768_60.02"  
+#xrandr --output Virtual-1 --primary --mode "1360x768_60.02" --pos 0x0 --rotate normal 
+
+xrandr --newmode "1920x1080_59.88"  172.45  1920 2040 2248 2576  1080 1081 1084 1118  -HSync +Vsync
+xrandr --addmode  Virtual-1 "1920x1080_59.88"
+xrandr --output Virtual-1 --primary --mode "1920x1080_59.88" --pos 0x0 --rotate normal
+
 
 #set keymboard
 #setxkbmap latam
@@ -31,9 +36,21 @@ if [ -d $xinitbase ]; then
 	unset f
 fi
 
+export EDITOR=nvim;
+
 #urxvt &
-urxvtd -q -o -f 
-urxvtc 
+#urxvtd -q -o -f 
+#urxvtc 
+
+#feh --bg-max ~/.Wallpapers/abstract.png
+#feh --bg-max --randomize ~/.Wallpapers/* &
+
+#sh ~/.Wallpapers/screenReloadTime.sh
+sh ~/.Wallpapers/autoscreen.sh 
+
+#picom --config ~/.config/picom/picom.conf
+picom -Cb &
+
 
 
 

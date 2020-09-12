@@ -1,5 +1,5 @@
 !  ____ _____ 
-! |  _ \_   _|  Derek Taylor (DistroTube)
+! |  _ \_   _|  Victor Espiritu (esev)
 ! | | | || |    http://www.youtube.com/c/DistroTube
 ! | |_| || |    http://www.gitlab.com/dwt1/ 
 ! |____/ |_|  	
@@ -40,11 +40,14 @@ URxvt*imLocale: en_US.UTF-8
 URxvt*termName: rxvt-unicode-256color
 !!URxvt*buffered: false
 URxvt.intensityStyles: false
-URxvt.depth: 24
-URxvt.font: xft:Roboto Mono:size=10
-!!URxvt.boldFont: xft:Roboto Mono Bold
-!!URxvt.italicFont: xft:Roboto Mono Italic
-!!URxvt.boldItalicFont: xft:Roboto Mono Bold Italic
+!!URxvt.depth: 24
+URxvt.font: xft:DejaVu Sans Mono for Powerline:autohint=true:size=10, \
+            xft:Inconsolata:size=10, \
+            xft:Monospace:size=10, \
+            xft:PowerlineSymbols:style=Medium
+URxvt.boldFont: xft:DejaVu Sans Mono for Powerline:autohint=true:bold:size=10
+URxvt.italicFont: xft:DejaVu Sans Mono for Powerline:autohint=true:italic:size=10
+URxvt.boldItalicFont: xft:DejaVu Sans Mono for Powerline:autohint=true:bold:italic:size=10
 URxvt.saveLines: 2000
 URxvt.letterSpace:-1
 URxvt.scrollBar: false
@@ -88,8 +91,13 @@ URxvt.keysym.M-v: perl:clipboard:paste
 
 ! special
 URxvt*foreground:   #bbc5ff
-URxvt*background:   [100]#292d3e
+URxvt*background:   #212341
 URxvt*cursorColor:  #bbc5ff
+
+!urxvt*transparent: true
+!urxvt*shading: 30
+!urxvt*depth: 32
+!urxvt*background: rgba:0000/0000/0200/c800
 
 XTerm*foreground: #bbc5ff
 XTerm*background: #292d3e
