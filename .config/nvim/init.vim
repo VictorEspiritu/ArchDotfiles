@@ -270,6 +270,16 @@ augroup idecode
 
 augroup end
 
+augroup resizeedit
+
+    nnoremap <C-h> :vertical resize -5<CR>
+    nnoremap <C-l> :vertical resize +5<CR>
+    nnoremap <C-j> :res +5<CR>
+    nnoremap <C-k> :res -5<CR>
+
+augroup end
+
+
 " =========================================================== END IDE CONFIG 
 
 set errorformat=%A%f:%l:\ %m,%-Z%p^,%-C%.%#
