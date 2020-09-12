@@ -286,9 +286,44 @@ set spelllang=en,es "Corrige palabras usando diccionarios de ingles y espanol
 au FocusGained * :checktime
 
 set t_md=
+
 :highlight LineNr ctermfg=DarkGrey
 :set fillchars+=vert:\ 
 ":hi VertSplit ctermfg=8
 :highlight VertSplit cterm=NONE
 :hi! Comment ctermfg=DarkGrey         
 :set foldcolumn=0
+
+set guifont=DroidSansMono_Nerd_Font:h11
+let g:webdevicons_enable = 1
+let g:webdevicons_enable_nerdtree = 1
+let g:webdevicons_conceal_nerdtree_brackets = 1
+let g:webdevicons_enable_unite = 1
+let g:webdevicons_enable_denite = 1
+let g:webdevicons_enable_vimfiler = 1
+let g:webdevicons_enable_ctrlp = 1
+let g:webdevicons_enable_airline_tabline = 1
+let g:webdevicons_enable_airline_statusline = 1
+let g:webdevicons_enable_startify = 1
+let g:webdevicons_enable_flagship_statusline = 1
+let g:WebDevIconsUnicodeDecorateFileNodes = 1
+let g:WebDevIconsUnicodeGlyphDoubleWidth = 1
+"let g:WebDevIconsNerdTreeAfterGlyphPadding = '  '
+let g:WebDevIconsNerdTreeGitPluginForceVAlign = 1
+"let g:WebDevIconsTabAirLineAfterGlyphPadding = ' '
+"let g:WebDevIconsTabAirLineBeforeGlyphPadding = ' '
+"let g:WebDevIconsUnicodeDecorateFileNodesDefaultSymbol = 'x'
+let g:WebDevIconsUnicodeByteOrderMarkerDefaultSymbol = ''
+let g:DevIconsEnableFoldersOpenClose = 1
+let g:DevIconsEnableFolderPatternMatching = 1
+"let g:DevIconsDefaultFolderOpenSymbol = 'ƛ'
+
+" NERDTrees File highlighting only the glyph/icon
+"autocmd filetype nerdtree highlight haskell_icon ctermbg=none ctermfg=Red guifg=#ffa500
+"autocmd filetype nerdtree highlight html_icon ctermbg=none ctermfg=Red guifg=#ffa500
+"autocmd filetype nerdtree highlight go_icon ctermbg=none ctermfg=Red guifg=#ffa500
+"autocmd filetype nerdtree syn match haskell_icon ## containedin=NERDTreeFlags
+"autocmd filetype nerdtree syn match html_icon ## containedin=NERDTreeFlags,html
+"autocmd filetype nerdtree syn match go_icon ## containedin=NERDTreeFlags
+
+
