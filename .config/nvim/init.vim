@@ -272,10 +272,10 @@ augroup end
 
 augroup resizeedit
 
-    nnoremap <C-h> :vertical resize -5<CR>
-    nnoremap <C-l> :vertical resize +5<CR>
-    nnoremap <C-j> :res +5<CR>
-    nnoremap <C-k> :res -5<CR>
+    nnoremap <C-h> :vertical resize -2<CR>
+    nnoremap <C-l> :vertical resize +2<CR>
+    nnoremap <C-j> :res +2<CR>
+    nnoremap <C-k> :res -2<CR>
 
 augroup end
 
