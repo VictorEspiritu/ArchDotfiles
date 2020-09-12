@@ -285,3 +285,10 @@ set autoread
 set spelllang=en,es "Corrige palabras usando diccionarios de ingles y espanol
 au FocusGained * :checktime
 
+set t_md=
+:highlight LineNr ctermfg=DarkGrey
+:set fillchars+=vert:\ 
+":hi VertSplit ctermfg=8
+:highlight VertSplit cterm=NONE
+:hi! Comment ctermfg=DarkGrey         
+:set foldcolumn=0
