@@ -183,6 +183,7 @@ augroup codecompilerun
     nnoremap <silent>mp :Mvn! clean package<CR>
     nnoremap <silent>mi :Mvn! clean install<CR>
     nnoremap <silent>mt :Mvn! clean test<CR>
+    nnoremap <C-m> :make<BAR>copen<CR>
     
     function! s:compile_code()                 
        execute "update"                            
