@@ -113,7 +113,15 @@
 # Press: [Ctrl-b] --> Scroll up entire page.
 # Press: [Ctrl-b] --> Scroll up entire page.
 
-
+# Comments 
+# [LeaderKey] = \ 
+# [\cc] --> Comment Line 
+# [\cm] --> Comment with asterics
+# [\cs] --> Comment with asterics in each line 
+#[\c[space]] --> Toggle Comment
+#[\ca] --> Change type comments 
+#[\cA] --> final comment 
+#[\cu] --> Uncomment Line
 
 
 

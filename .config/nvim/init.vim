@@ -20,6 +20,19 @@ Plug 'tpope/vim-commentary' "Comentar y descomentar codigo
 Plug 'mikelue/vim-maven-plugin' "Plugin for maven 
 Plug 'neoclide/coc-pyls'
 
+Plug 'pangloss/vim-javascript'
+Plug 'jparise/vim-graphql'
+Plug 'moll/vim-node'
+Plug 'fatih/vim-go'
+Plug 'vim-python/python-syntax'
+Plug 'vim-jp/syntax-vim-ex'
+Plug 'ekalinin/Dockerfile.vim'
+Plug 'cespare/vim-toml'
+Plug 'lifepillar/pgsql.vim'
+Plug 'preservim/nerdcommenter'
+Plug 'KabbAmine/vCoolor.vim'
+Plug 'tiagofumo/vim-nerdtree-syntax-highlight'
+
 call plug#end()
 
 let g:NERDTreeChDirMode = 2  " Cambia el directorio actual al nodo padre actual
@@ -174,6 +187,8 @@ set statusline^=%{coc#status()}%{get(b:,'coc_current_function','')}
 
 " ========================================================== END COC CONFIG
 noremap <C-S> :update<CR>
+noremap <C-L> :loadview<CR>
+noremap <C-k> :mkview<CR>
 
 augroup codecompilerun
 
@@ -227,6 +242,7 @@ augroup idecode
     nnoremap <C-I> :OR<CR>
     " Code Action Alt-Insert 
     nnoremap <A-CR> :CocList actions<CR>
+    
     " Code Word Action Alt-Enter
     nmap <silent> ce <Plug>(coc-codeaction)
     " Show list errors     
@@ -236,6 +252,7 @@ augroup idecode
     nnoremap <silent> cl :clast<CR>
     nnoremap <silent> cn :cnext<CR>
     nnoremap <silent> cm :cprevious<CR>
+    
     " Use `[g` and `]g` to navigate diagnostics
     nmap <silent> [g <Plug>(coc-diagnostic-prev)
     nmap <silent> ]g <Plug>(coc-diagnostic-next)
@@ -273,10 +290,10 @@ augroup end
 
 augroup resizeedit
 
-    nnoremap <C-h> :vertical resize -2<CR>
-    nnoremap <C-l> :vertical resize +2<CR>
-    nnoremap <C-j> :res +2<CR>
-    nnoremap <C-k> :res -2<CR>
+    nnoremap <C-A-h> :vertical resize -2<CR>
+    nnoremap <C-A-l> :vertical resize +2<CR>
+    nnoremap <C-A-j> :res +2<CR>
+    nnoremap <C-A-k> :res -2<CR>
 
 augroup end
 
@@ -298,14 +315,86 @@ au FocusGained * :checktime
 
 set t_md=
 
-:highlight LineNr ctermfg=DarkGrey
+:highlight LineNr ctermfg=60
 :set fillchars+=vert:\ 
 ":hi VertSplit ctermfg=8
 :highlight VertSplit cterm=NONE
-:hi! Comment ctermfg=DarkGrey         
+":hi! Comment ctermfg=DarkGrey         
+:hi! Comment ctermfg=8
 :set foldcolumn=0
+hi Folded ctermbg=black
+
+":AirlineTheme lucius                         
+let g:airline_theme='behelit'
+:hi Directory guifg=#FFF000 ctermfg=97
+
+"NERD Tree Styles
+let s:brown = "905532"
+let s:aqua =  "318d9e"
+let s:blue = "535BFF"
+let s:lightBlue = "228DFC"
+let s:greenBlue = "44788E"
+let s:lightPurple = "DA71FF"
+let s:red = "FE5B8F"
+let s:beige = "F5C06F"
+let s:yellow = "F09F17"
+let s:orange = "d16547"
+let s:darkOrange = "F16529"
+let s:green = "289c76"
+let s:lightGreen = "31B53E"
+let s:white = "a09eb5"
+let s:blackShell = "747474"
+let s:rspec_red = 'FE405F'
+let s:git_orange = 'F54D27'
+
 
 set guifont=DroidSansMono_Nerd_Font:h11
+
+let NERDTreeMinimalUI = 1
+let NERDTreeDirArrows = 1
+let g:NERDSpaceDelimis = 1
+let g:NERDCompactSexyComs = 1
+let g:NERDDefaultAlign = 'left'
+let g:NERDAltDelims_java = 1
+let g:NERDCustomDelimiters = { 'c': {'left': '/**', 'right': '*/'} }
+let g:NERDCommentEmptyLines = 1 
+let g:NERDTrimTrailingWithespace = 1
+let g:NERDToggleCheckAllLines =1 
+let g:NERDTreeLimitedSyntax = 1
+let g:NERDTreeDirArrowExpandable = ''
+let g:NERDTreeDirArrowCollapsible = ''
+
+let g:NERDTreeFileExtensionHighlightFullName = 1
+let g:NERDTreeExactMatchHighlightFullName = 1
+let g:NERDTreePatternMatchHighlightFullName = 1
+let g:NERDTreeHighlightFolders = 1 " enables folder icon highlighting using exact match
+let g:NERDTreeHighlightFoldersFullName = 1 " highlights the folder name
+
+let g:NERDTreeExtensionHighlightColor = {} " this line is needed to avoid error
+let g:NERDTreeExtensionHighlightColor['css'] = s:blue  " sets the color of css files to blue
+let g:NERDTreeExtensionHighlightColor['html'] = s:beige " sets the color of css files to blue
+let g:NERDTreeExtensionHighlightColor['go'] = s:green " sets the color of css files to blue
+let g:NERDTreeExtensionHighlightColor['txt'] = s:blackShell " sets the color of css files to blue
+let g:NERDTreeExtensionHighlightColor['md'] = s:white " sets the color of css files to blue
+let g:NERDTreeExtensionHighlightColor['sh'] = s:lightGreen " sets the color of css files to blue
+let g:NERDTreeExtensionHighlightColor['proto'] = s:blue " sets the color of css files to blue
+let g:NERDTreeExtensionHighlightColor['gs'] = s:red " sets the color of css files to blue
+let g:NERDTreeExtensionHighlightColor['xml'] = s:lightPurple " sets the color of css files to blue
+let g:NERDTreeExtensionHighlightColor['java'] = s:red " sets the color of css files to blue
+let g:NERDTreeExtensionHighlightColor['sql'] = s:red " sets the color of css files to blue
+let g:NERDTreeExtensionHighlightColor['js'] = s:green " sets the color of css files to blue
+
+let g:NERDTreeExactMatchHighlightColor = {} " this line is needed to avoid error
+let g:NERDTreeExactMatchHighlightColor['.gitignore'] = s:git_orange " sets the color for .gitignore files
+let g:NERDTreeExactMatchHighlightColor['Jenkinsfile'] = s:yellow " sets the color for .gitignore files
+
+let g:NERDTreePatternMatchHighlightColor = {} " this line is needed to avoid error
+let g:NERDTreePatternMatchHighlightColor['(.*mod|.*sum)$'] = s:greenBlue " sets the color for files ending with _spec.rb
+let g:NERDTreePatternMatchHighlightColor['(.*properties|.*yml|.*toml|.*json)$'] = s:beige " sets the color for files ending with _spec.rb
+let g:NERDTreePatternMatchHighlightColor['(.*proto|.*graphql|Dockerfile)$'] = s:lightBlue " sets the color for files ending with _spec.rb
+let g:NERDTreeSyntaxEnabledExtensions = ['c'] " enable highlight to .hbs and .lhs files with default colors
+let g:NERDTreeSyntaxEnabledExactMatches = ['.git', 'node_modules', 'favicon.ico'] " enable highlight for dropbox and node_modules folders, and favicon.ico files with default colors
+
 let g:webdevicons_enable = 1
 let g:webdevicons_enable_nerdtree = 1
 let g:webdevicons_conceal_nerdtree_brackets = 1
@@ -317,24 +406,54 @@ let g:webdevicons_enable_airline_tabline = 1
 let g:webdevicons_enable_airline_statusline = 1
 let g:webdevicons_enable_startify = 1
 let g:webdevicons_enable_flagship_statusline = 1
-let g:WebDevIconsUnicodeDecorateFileNodes = 1
-let g:WebDevIconsUnicodeGlyphDoubleWidth = 1
-"let g:WebDevIconsNerdTreeAfterGlyphPadding = '  '
 let g:WebDevIconsNerdTreeGitPluginForceVAlign = 1
-"let g:WebDevIconsTabAirLineAfterGlyphPadding = ' '
-"let g:WebDevIconsTabAirLineBeforeGlyphPadding = ' '
-"let g:WebDevIconsUnicodeDecorateFileNodesDefaultSymbol = 'x'
-let g:WebDevIconsUnicodeByteOrderMarkerDefaultSymbol = ''
+let g:WebDevIconsUnicodeDecorateFolderNodesDefaultSymbol = ' '
+let g:DevIconsDefaultFolderOpenSymbol = ' '
 let g:DevIconsEnableFoldersOpenClose = 1
 let g:DevIconsEnableFolderPatternMatching = 1
-"let g:DevIconsDefaultFolderOpenSymbol = 'ƛ'
+let g:WebDevIconsDefaultFolderSymbolColor = s:lightPurple " sets the color for folders that did not match any rule
+let g:WebDevIconsUnicodeDecorateFileNodesExtensionSymbols = {} " needed
+let g:WebDevIconsUnicodeDecorateFileNodesExtensionSymbols['css'] = '' 
+let g:WebDevIconsUnicodeDecorateFileNodesExtensionSymbols['html'] = '' 
+let g:WebDevIconsUnicodeDecorateFileNodesExtensionSymbols['js'] = '' 
+let g:WebDevIconsUnicodeDecorateFileNodesExtensionSymbols['java'] = '' 
+let g:WebDevIconsUnicodeDecorateFileNodesExtensionSymbols['sql'] = '' 
+let g:WebDevIconsUnicodeDecorateFileNodesExtensionSymbols['rb'] = '' 
+let g:WebDevIconsUnicodeDecorateFileNodesExtensionSymbols['py'] = '' 
+let g:WebDevIconsUnicodeDecorateFileNodesExtensionSymbols['md'] = '' 
+let g:WebDevIconsUnicodeDecorateFileNodesExtensionSymbols['gs'] = '' 
+let g:WebDevIconsUnicodeDecorateFileNodesExtensionSymbols['xml'] = '' 
+let g:WebDevIconsUnicodeDecorateFileNodesExtensionSymbols['proto'] = '' 
 
-" NERDTrees File highlighting only the glyph/icon
-"autocmd filetype nerdtree highlight haskell_icon ctermbg=none ctermfg=Red guifg=#ffa500
-"autocmd filetype nerdtree highlight html_icon ctermbg=none ctermfg=Red guifg=#ffa500
-"autocmd filetype nerdtree highlight go_icon ctermbg=none ctermfg=Red guifg=#ffa500
-"autocmd filetype nerdtree syn match haskell_icon ## containedin=NERDTreeFlags
-"autocmd filetype nerdtree syn match html_icon ## containedin=NERDTreeFlags,html
-"autocmd filetype nerdtree syn match go_icon ## containedin=NERDTreeFlags
+let g:WebDevIconsUnicodeDecorateFileNodesPatternSymbols = {} " needed
+let g:WebDevIconsUnicodeDecorateFileNodesPatternSymbols['\(.gz\|.xz\|.zip\|.tar\|.bz2\)$'] = ''
+let g:WebDevIconsUnicodeDecorateFileNodesPatternSymbols['\(.pem\|.crt\|.cer\|.p12\)$'] = ''
+let g:WebDevIconsUnicodeDecorateFileNodesPatternSymbols['\(.jpg\|.png\|.svg\)$'] = ''
+let g:WebDevIconsUnicodeDecorateFileNodesPatternSymbols['\(.mod\|.jar\)$'] = ''
+let g:WebDevIconsUnicodeDecorateFileNodesPatternSymbols['\(.json\|.yml\|.properties\|.toml\)$'] = ''
+let g:WebDevIconsUnicodeDecorateFileNodesPatternSymbols['docker-compose.yml$'] = ''
+let g:WebDevIconsUnicodeDecorateFileNodesPatternSymbols['Dockerfile$'] = ''
+
+let g:WebDevIconsUnicodeDecorateFileNodesExactSymbols = {} " needed
+let g:WebDevIconsUnicodeDecorateFileNodesExactSymbols['.gitignore'] = ''
+let g:WebDevIconsUnicodeDecorateFileNodesExactSymbols['Dockerfile'] = ''
+
+:highlight SignColumn ctermbg=NONE
+":hi PmenuThumb ctermbg=green ctermfg=68
+":hi PmenuSbar ctermbg=green ctermfg=68     
+:hi Pmenu ctermbg=black ctermfg=85
+:hi PmenuSel ctermbg=57 ctermfg=015
+":highlight Visual cterm=NONE ctermbg=42 ctermfg=238
+:highlight Visual ctermbg=93
+
+"set foldmethod=syntax
+
+"autocmd BufWritePost, BufWinLeave, WinLeave ?* mkview
+"autocmd BufRead, BufWinEnter ?* silent loadview
+
+"                                                                             
+
+
+
 
 

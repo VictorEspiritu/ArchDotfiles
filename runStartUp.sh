@@ -102,7 +102,7 @@ sh -c 'curl -fLo "${XDG_DATA_HOME:-$HOME/.local/share}"/nvim/site/autoload/plug.
 #Install NerdFonts
 mkdir -p ~/.local/share/fonts
 cd ~/.local/share/fonts && curl -fLo "Droid Sans Mono for Powerline Nerd Font Complete.otf" https://github.com/ryanoasis/nerd-fonts/raw/master/patched-fonts/DroidSansMono/complete/Droid%20Sans%20Mono%20Nerd%20Font%20Complete.otf
-N
+
 
 
 #Install management wallpapers
@@ -120,6 +120,15 @@ sudo pacman -S ranger
 
 #Configure default text editor to File Manager
 export EDITOR=nvim;
+
+#Install & configure preview image
+sudo pacman -S imagemagick
+#Edit file ~/.config/ranger/scope.sh disable preview image 
+# set preview_images true
+# set preview_images_method urxvt
+git clone https://aur.archlinux.org/rxvt-unicode-pixbuf.git
+cd rxvt-unicode-pixbuf
+makepkg -sic
 
 #Install youtube viwer, configure ~/.config/youtube-viewer/user.json, with a new API_KEY and OAUTH (client_id, secret_id)
 sudo pacman -S youtube-viewer
