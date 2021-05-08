@@ -434,26 +434,26 @@ let g:WebDevIconsUnicodeDecorateFileNodesExactSymbols['Dockerfile'] = ''
 let NERDTreeMinimalUI = 1
 
 "# Archlinux Styles
-":hi! Comment ctermfg=8
-":highlight LineNr ctermfg=60
-":highlight SignColumn ctermbg=NONE
-"hi Folded ctermbg=black
-":hi Pmenu ctermbg=black ctermfg=85
-":hi PmenuSel ctermbg=57 ctermfg=015
-":highlight Visual ctermbg=93
-"let g:airline_theme='behelit'
-":hi Directory guifg=#FFF000 ctermfg=97
-"set guifont=DroidSansMono_Nerd_Font:h11
+:hi! Comment ctermfg=8
+:highlight LineNr ctermfg=60
+:highlight SignColumn ctermbg=NONE
+hi Folded ctermbg=black
+:hi Pmenu ctermbg=black ctermfg=85
+:hi PmenuSel ctermbg=57 ctermfg=015
+:highlight Visual ctermbg=93
+let g:airline_theme='behelit'
+:hi Directory guifg=#FFF000 ctermfg=97
+set guifont=DroidSansMono_Nerd_Font:h11
 
 
 "# Ubuntu Styles
-:hi! Comment ctermfg=DarkGrey         
-:hi VertSplit ctermbg=None 
-:highlight LineNr ctermfg=DarkGrey
-:highlight SignColumn ctermbg=black
-let g:airline_theme='monochrome'
-:hi Directory guifg=#FFF000 ctermfg=97
-set guifont=DroidSansMono\ Nerd\ Font:h11
+":hi! Comment ctermfg=DarkGrey         
+":hi VertSplit ctermbg=None 
+":highlight LineNr ctermfg=DarkGrey
+":highlight SignColumn ctermbg=black
+"let g:airline_theme='monochrome'
+":hi Directory guifg=#FFF000 ctermfg=97
+"set guifont=DroidSansMono\ Nerd\ Font:h11
 
 
 
