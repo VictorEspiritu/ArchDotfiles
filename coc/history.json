@@ -1,0 +1,34 @@
+{
+  "commands": {
+    "%2Fprojects%2Fjava%2Flabs%2Finit": [
+      "java."
+    ],
+    "%2Fhome%2Femerick": [
+      "d",
+      "ja"
+    ]
+  },
+  "symbols": {
+    "%2Fprojects%2Fjava%2Flabs%2Finit": [
+      "ClassRu",
+      "clas",
+      " j",
+      "dd"
+    ]
+  },
+  "diagnostics": {
+    "%2Fprojects%2Fjava%2Flabs%2Finit": [
+      "s"
+    ],
+    "%2Fhome%2Femerick": [
+      "ja"
+    ]
+  },
+  "services": {
+    "%2Fhome%2Femerick": [
+      "w",
+      "_",
+      "  :"
+    ]
+  }
+}

@@ -35,7 +35,7 @@ from libqtile.lazy import lazy
 
 # Configuration of thems: material-darker, dracula
 qtile_path = path.join(path.expanduser("~"), ".config", "qtile")
-theme = "dracula"
+theme = "zafiro"
 theme_path = path.join(qtile_path, "themes", theme)
 
 # Colors of theme
@@ -467,9 +467,6 @@ mouse = [
     Drag([mod], "Button1", lazy.window.set_position_floating(), start=lazy.window.get_position()),
     Drag([mod], "Button3", lazy.window.set_size_floating(), start=lazy.window.get_size()),
     Click([mod], "Button2", lazy.window.bring_to_front())
-
-
-
 
 ]
 

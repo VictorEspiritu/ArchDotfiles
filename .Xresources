@@ -6,7 +6,7 @@
 
 
 
-!!Xft.dpi: 96
+!Xft.dpi: 96
 !!Xft.antialias: true
 !!Xft.hinting: true
 !!Xft.rgba: rgb
@@ -40,24 +40,28 @@ URxvt*imLocale: en_US.UTF-8
 URxvt*termName: rxvt-unicode-256color
 !!URxvt*buffered: false
 URxvt.intensityStyles: false
-!!URxvt.depth: 24
-URxvt.font: xft:DejaVu Sans Mono for Powerline:autohint=true:size=10, \
-            xft:Inconsolata:size=10, \
+!URxvt.depth: 10 - :DroidSansMono Nerd Font
+URxvt.font: xft:NotoSansDisplay Nerd Font Mono:pixelsize=14, \
+            xft:DroidSansMono Nerd Font:pixelsize=11, \
+            xft:DejaVu Sans Mono for Powerline, \
             xft:Monospace:size=10, \
-            xft:PowerlineSymbols:style=Medium
-URxvt.boldFont: xft:DejaVu Sans Mono for Powerline:autohint=true:bold:size=10
-URxvt.italicFont: xft:DejaVu Sans Mono for Powerline:autohint=true:italic:size=10
-URxvt.boldItalicFont: xft:DejaVu Sans Mono for Powerline:autohint=true:bold:italic:size=10
+            xft:PowerlineSymbols
+URxvt.boldFont: xft:DroidSansMono Nerd Font
+URxvt.italicFont: xft:DroidSansMono Nerd Font
+URxvt.boldItalicFont: xft:DroidSansMono Nerd Font
 URxvt.saveLines: 2000
 URxvt.letterSpace:-1
 URxvt.scrollBar: false
-URxvt.cursorColor: white
+!URxvt.cursorColor: white
 URxvt.cursorBlink: true
-URxvt.iconFile: /usr/share/icons/Adwaita/scalable/devices/audio-headset-symbolic.svg
+!!URxvt.iconFile: /usr/share/icons/Adwaita/scalable/devices/audio-headset-symbolic.svg
 
 !! Extensions
 URxvt.perl-ext-common: default,matcher,resize-font,url-select,keyboard-select,clipboard
-URxvt.colorUL: #19D3D6
+!!URxvt.font-size.step: 1
+!!URxvt.keysym.C-j: perl:font-size:increase
+!!URxvt.keysym.C-k: perl:font-size:decrease
+URxvt.colorUL: #de688e
 !! url-select
 URxvt.keysym.M-u: perl:url-select:select_next
 URxvt.url-select.launcher: urxvt -e lynx -cfg=~/.lynx.cfg -lss=~/.lynx.lss
@@ -68,6 +72,8 @@ URxvt.keyboard-select.clipboard: true
 !! resize-font
 URxvt.resize-font.smaller: C-j
 URxvt.resize-font.bigger:  C-k
+URxvt.resize-font.step: 1
+
 !! Matcher
 URxvt.url-launcher: urxvt -e lynx -cfg=~/.lynx.cfg -lss=~/.lynx.lss
 URxvt.matcher.button: 1
@@ -90,48 +96,50 @@ URxvt.keysym.M-v: perl:clipboard:paste
 !! COLORS
 
 ! special
-URxvt*foreground:   #bbc5ff
-URxvt*background:   #212341
-URxvt*cursorColor:  #bbc5ff
+!URxvt*foreground:   #bbc5ff
+!URxvt*background:   #212341
+URxvt*cursorColor: #bbc5ff
+URxvt.background: #1e1e28
+URxvt.foreground: #9ea1b0
+
 
 !urxvt*transparent: true
 !urxvt*shading: 30
 !urxvt*depth: 32
 !urxvt*background: rgba:0000/0000/0200/c800
 
-XTerm*foreground: #bbc5ff
-XTerm*background: #292d3e
-XTerm*cursorColor: #bbc5ff
+!XTerm*foreground: #bbc5ff
+!XTerm*background: #292d3e
+!XTerm*cursorColor: #bbc5ff
 
 ! black
-!!*.color0:       #101010  !! originally #292d3e
-!!*.color0:	pink
-!!*.color8:       #434758
+*.color0:       #15151a
+*.color8:       #363645
 
 ! red
-*.color1:       #f07178
-*.color9:       #ff8b92
+*.color1:       #e24779
+*.color9:       #de688e
 
 ! green
-*.color2:       #c3e88d
-*.color10:      #ddffa7
+*.color2:       #289c76
+*.color10:      #53af91
 
 ! yellow:
-*.color3:       #ffcb6b
-*.color11:      #ffe585
+*.color3:       #d16547
+*.color11:      #e97d5f
 
 ! blue
-*.color4:       #82aaff
-*.color12:      #9cc4ff
+*.color4:       #176bc2
+*.color12:      #2f80d4
 
 ! magenta
-*.color5:       #c792ea
-*.color13:      #e1acff
+*.color5:       #b44ad9
+*.color13:      #c05be3
 
 ! cyan
-*.color6:       #89ddff
-*.color14:      #a3f7ff
+*.color6:       #318d9e
+*.color14:      #42aabd
 
 ! white
-*.color7:       #d0d0d0
-*.color15:      #ffffff
+*.color7:       #a09eb5
+*.color15:      #d2d1e0

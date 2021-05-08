@@ -23,3 +23,15 @@ show columns from Posts;
 #Pm2
 pm2 start npm --name app  -- run start:pro --
 
+ apt-get update 
+ apt-get install apache2 libapache2-mod-php php php-mcrypt php-mysql mysql-client-core-5.7 -y 
+ cd /var/www/html 
+ mv index.html index.html.bk 
+ wget https://wordpress.org/latest.tar.gz 
+ tar -xzf latest.tar.gz 
+ cp -r wordpress/* /var/www/html/ 
+ rm -rf wordpress latest.tar.gz 
+ chown -R www-data:www-data /var/www/html 
+ chmod -R 755 /var/www/html/wp-content 
+ service apache2 restart
+rm-4xoo079g5lt472498.mysql.germany.rds.aliyuncs.com

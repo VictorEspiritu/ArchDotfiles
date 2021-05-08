@@ -285,13 +285,7 @@ augroup idecode
         call CocAction('doHover')
       endif
     endfunction
-    
-    " Navigations easy
-    nnoremap <A-j> <C-W><C-J>
-    nnoremap <A-k> <C-W><C-K>
-    nnoremap <A-l> <C-W><C-L>
-    nnoremap <A-h> <C-W><C-H>
- 
+
 augroup end
 
 augroup resizeedit
@@ -458,8 +452,4 @@ let g:WebDevIconsUnicodeDecorateFileNodesExactSymbols['Dockerfile'] = ''
 "autocmd BufRead, BufWinEnter ?* silent loadview
 
 "                                                                             
-
-
-
-
 

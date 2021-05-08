@@ -52,7 +52,8 @@ for i in listdir(img_path):
 
 
 mod = "mod4"
-myTerm="/usr/bin/urxvt"
+#myTerm="/usr/bin/urxvt"
+myTerm="/usr/bin/alacritty"
 myIDE="/usr/bin/idea/bin/idea.sh"
 
 
@@ -217,9 +218,10 @@ keys = [
 group_names = [
         ('WWW', {'layout': 'max'}),
         ('DEV', {'layout': 'monadwide'}),
+        ('ARC', {'layout': 'monadwide'}),
+        ('TRM', {'layout': 'monadwide'}),
+        ('FYS', {'layout': 'monadtall'}),
         ('SYS', {'layout': 'monadtall'}),
-        ('TRM', {'layout': 'monadtall'}),
-        ('FSY', {'layout': 'monadwide'}),
         ('MDA', {'layout': 'matrix'}),
         ('DCS', {'layout': 'floating'})
         ]
@@ -234,8 +236,9 @@ for i, (name, kwargs) in enumerate(group_names, 1):
 
 layout_conf= {
         'border_width': 1,
-        'margin': 4,
+        'margin': 3,
         'border_focus': colors['primary'][0],
+        'border_normal': colors['dark2'][0],
     }    
 
 layouts = [
@@ -263,8 +266,8 @@ w_separator = {
 }
 
 w_group_box = {
-    **w_base_color(),
-    'font': 'Ubuntu Bold',
+    **w_base_color('grey'),
+    'font': 'DroidSansMono Nerd Font',
     'fontsize': 10,
     'margin_y': 5,
     'margin_x': 0,
@@ -276,16 +279,23 @@ w_group_box = {
     'rounded': False,
     'highlight_method': 'block',
     'this_current_screen_border': colors['primary'],
-    'this_screen_border': colors['grey'],
-    'other_current_screen_border': colors['dark'],
-    'other_screen_border': colors['dark']
+    'this_screen_border': colors['primary'],
+    'other_current_screen_border': colors['primary'],
+    'other_screen_border': colors['primary']
+}
+w_prompt = {
+    **w_base_color(fg = 'tertiary'),
+    'font': 'DroidSansMono Nerd Font',
+    'fontsize': 11,
+    'padding': 6
 }
 
+
 w_window_name = {
-    **w_base_color(fg = 'primary'),
-    'font': 'Ubuntu',
+    **w_base_color(fg = 'tertiary'),
+    'font': 'DroidSansMono Nerd Font',
     'fontsize': 11,
-    'padding': 5
+    'padding': 6
 }
 
 w_systray = {
@@ -294,7 +304,7 @@ w_systray = {
 }
 
 w_text_box = {
-    'font': 'Ubuntu Bold',
+    'font': 'DroidSansMono Nerd Font',
     'fontsize': 15,
     'padding': 5
 }
@@ -380,7 +390,7 @@ screen_primary = {
      #widget.Sep(**w_separator),
      widget.WindowName(**w_window_name),
      #widget.Sep(**w_separator),
-     widget.Prompt(),
+     widget.Prompt(**w_prompt),
      #widget.Sep(**w_separator),
      #widget.Memory(**w_memory),
      #widget.Sep(**w_separator),
@@ -409,7 +419,7 @@ screen_primary = {
     #widget.Image(filename = img['secondary']),
         #*wk_powerline_base()
     widget.CurrentLayoutIcon(**w_base_color(bg='secondary'), **w_current_layout_icon),
-    #widget.Clock(**w_base_color(bg='primary'), **w_clock),
+    widget.Clock(**w_base_color(bg='dark'), **w_clock),
 
 }
 
@@ -420,7 +430,7 @@ screen_secondary = {
 }
 
 widget_defaults = dict(
-    font='Roboto Mono',
+    font='DroidSansMono Nerd Font',
     fontsize=12,
     padding=1,
 )
@@ -428,7 +438,7 @@ widget_defaults = dict(
 extension_defaults = widget_defaults.copy()
 
 screens = [
-    Screen(top = bar.Bar(screen_primary, 24, opacity=0.99))
+    Screen(top = bar.Bar(screen_primary, 24, opacity=1))
 ]
 
 #screens = [

@@ -106,19 +106,18 @@ prompt_context() {}
 # alias zshconfig="mate ~/.zshrc"
 # alias ohmyzsh="mate ~/.oh-my-zsh"
 
+# Upload credentials
+source /esev/.environment.sh
 
 # LOCAL IP to browser-sync
-export LOCAL_IP=`ip route get 8.8.8.8 | head -1 | cut -d' ' -f7`
-
 alias serve="browser-sync start -s -f . --no-notify --host $LOCAL_IP --port 9000"
-
 alias idea="/usr/bin/idea/bin/idea.sh"
 alias apx="apx-cli"
 alias ecs="ecs-cli"
-alias ecsi="ecs-cli --directory directory.work-02.ether.igrupobbva --key /esev/credentials/ecs/own/user.p023670.key --cert /esev/credentials/ecs/own/pe.p023670.etherId_cert.pem --insecure --refresh --verbose 3"
-
+alias ecsi="ecs-cli --directory directory.work-02.ether.igrupobbva --key $BBVA_KEY --cert $BBVA_CRT --insecure --refresh --verbose 3"
 alias nv="nvim"
 
+#Functions to improve develop & conformt
 vxjfunction(){
    mvn archetype:generate -DgroupId=io.esev.com -DartifactId=$1 -DarchetypeArtifactId=maven-archetype-quickstart -DinteractiveMode=false
 }
@@ -129,24 +128,54 @@ vxjsfunction(){
    cd $1
 }
 
+mkdircd(){
+   mkdir $1 && cd $1
+}
+
+archTheme(){
+   if [[ $1 = "w" ]]; then 
+      cp /home/emerick/.config/nvim/init.white.vim /home/emerick/.config/nvim/init.vim
+      cp /home/emerick/.config/alacritty/alacritty.white.yml /home/emerick/.config/alacritty/alacritty.yml
+      cp /home/emerick/.config/picom/picom.white.conf /home/emerick/.config/picom/picom.conf
+   else
+      cp /home/emerick/.config/nvim/init.dark.vim /home/emerick/.config/nvim/init.vim
+      cp /home/emerick/.config/alacritty/alacritty.dark.yml /home/emerick/.config/alacritty/alacritty.yml
+      cp /home/emerick/.config/picom/picom.dark.conf /home/emerick/.config/picom/picom.conf
+   fi
+}
+
+bwsTheme(){
+   if [[ $1 = "w" ]]; then 
+      cp /home/emerick/.config/vimb/style.white.css /home/emerick/.config/vimb/style.css
+      cp /home/emerick/.config/vimb/home/styles/homepage.white.css /home/emerick/.config/vimb/home/styles/homepage.css
+   else
+      cp /home/emerick/.config/vimb/style.dark.css /home/emerick/.config/vimb/style.css
+      cp /home/emerick/.config/vimb/home/styles/homepage.dark.css /home/emerick/.config/vimb/home/styles/homepage.css
+   fi
+}
+
 alias vxm="vxjfunction"
 alias vxs="vxjsfunction"
 alias vboot="./mvnw spring-boot:run"
+alias mcd="mkdircd"
+alias bwsth="bwsTheme"
+alias archtheme="archTheme"
+alias myip="echo $LOCAL_IP"
 
-export JAVA_HOME=/usr/lib/jvm/default-runtime/
-export PATH=$PATH:$JAVA_HOME/bin
+alias gpum="git push -u origin master"
+alias gpuo="git push -u origin "
+alias gpo="git push origin "
+alias gta="git tag -a "
 
-export M2_HOME=/opt/maven/
-export PATH=$PATH:$M2_HOME/bin
-
-export PLYS=~/.local/
-export PATH=$PATH:$PLYS/bin
-
-export GOHOME=/home/emerick/go
-export PATH=$PATH:$GOHOME/bin
-
+alias dp="docker ps "
+alias dpa="docker ps -a"
+alias di="docker images"
+alias dsp="docker stop "
+alias dst="docker start "
+alias drmi="docker rmi -f "
+alias drm="docker rm -f "
 
 neofetch
 
-
+complete -C '/usr/local/bin/aws_completer' aws
 

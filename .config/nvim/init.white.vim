@@ -285,13 +285,7 @@ augroup idecode
         call CocAction('doHover')
       endif
     endfunction
-    
-    " Navigations easy
-    nnoremap <A-j> <C-W><C-J>
-    nnoremap <A-k> <C-W><C-K>
-    nnoremap <A-l> <C-W><C-L>
-    nnoremap <A-h> <C-W><C-H>
- 
+
 augroup end
 
 augroup resizeedit
@@ -321,36 +315,33 @@ au FocusGained * :checktime
 
 set t_md=
 
-:highlight LineNr ctermfg=60
+:highlight LineNr ctermfg=246
 :set fillchars+=vert:\ 
-":hi VertSplit ctermfg=8
 :highlight VertSplit cterm=NONE
-":hi! Comment ctermfg=DarkGrey         
-:hi! Comment ctermfg=8
+:hi Comment ctermfg=246
 :set foldcolumn=0
 hi Folded ctermbg=black
 
 ":AirlineTheme lucius                         
-let g:airline_theme='behelit'
-:hi Directory guifg=#FFF000 ctermfg=97
+":AirlineTheme atomic
+":AirlineTheme minimalist
+":AirlineTheme monochrome
+let g:airline_theme='minimalist'
+:hi Directory guifg=#FFF000 ctermfg=240
 
 "NERD Tree Styles
-let s:brown = "905532"
-let s:aqua =  "318d9e"
-let s:blue = "535BFF"
-let s:lightBlue = "228DFC"
+let s:blue = "326c97"
+let s:lightBlue = "2b93d1"
 let s:greenBlue = "44788E"
-let s:lightPurple = "DA71FF"
-let s:red = "FE5B8F"
-let s:beige = "F5C06F"
-let s:yellow = "F09F17"
-let s:orange = "d16547"
-let s:darkOrange = "F16529"
-let s:green = "289c76"
+let s:lightPurple = "9844bc"
+let s:red = "dd330e"
+let s:beige = "EEA12C"
+let s:yellow = "DABD2F"
+let s:orange = "EF671B"
+let s:green = "55b25f"
 let s:lightGreen = "31B53E"
-let s:white = "a09eb5"
-let s:blackShell = "747474"
-let s:rspec_red = 'FE405F'
+let s:white = "e0e0e0"
+let s:blackShell = "919597"
 let s:git_orange = 'F54D27'
 
 
@@ -379,7 +370,7 @@ let g:NERDTreeHighlightFoldersFullName = 1 " highlights the folder name
 let g:NERDTreeExtensionHighlightColor = {} " this line is needed to avoid error
 let g:NERDTreeExtensionHighlightColor['css'] = s:blue  " sets the color of css files to blue
 let g:NERDTreeExtensionHighlightColor['html'] = s:beige " sets the color of css files to blue
-let g:NERDTreeExtensionHighlightColor['go'] = s:green " sets the color of css files to blue
+let g:NERDTreeExtensionHighlightColor['go'] = s:lightBlue " sets the color of css files to blue
 let g:NERDTreeExtensionHighlightColor['txt'] = s:blackShell " sets the color of css files to blue
 let g:NERDTreeExtensionHighlightColor['md'] = s:white " sets the color of css files to blue
 let g:NERDTreeExtensionHighlightColor['sh'] = s:lightGreen " sets the color of css files to blue
@@ -388,7 +379,7 @@ let g:NERDTreeExtensionHighlightColor['gs'] = s:red " sets the color of css file
 let g:NERDTreeExtensionHighlightColor['xml'] = s:lightPurple " sets the color of css files to blue
 let g:NERDTreeExtensionHighlightColor['java'] = s:red " sets the color of css files to blue
 let g:NERDTreeExtensionHighlightColor['sql'] = s:red " sets the color of css files to blue
-let g:NERDTreeExtensionHighlightColor['js'] = s:green " sets the color of css files to blue
+let g:NERDTreeExtensionHighlightColor['js'] = s:beige " sets the color of css files to blue
 
 let g:NERDTreeExactMatchHighlightColor = {} " this line is needed to avoid error
 let g:NERDTreeExactMatchHighlightColor['.gitignore'] = s:git_orange " sets the color for .gitignore files
@@ -396,7 +387,7 @@ let g:NERDTreeExactMatchHighlightColor['Jenkinsfile'] = s:yellow " sets the colo
 
 let g:NERDTreePatternMatchHighlightColor = {} " this line is needed to avoid error
 let g:NERDTreePatternMatchHighlightColor['(.*mod|.*sum)$'] = s:greenBlue " sets the color for files ending with _spec.rb
-let g:NERDTreePatternMatchHighlightColor['(.*properties|.*yml|.*toml|.*json)$'] = s:beige " sets the color for files ending with _spec.rb
+let g:NERDTreePatternMatchHighlightColor['(.*properties|.*yml|.*toml|.*json)$'] = s:orange " sets the color for files ending with _spec.rb
 let g:NERDTreePatternMatchHighlightColor['(.*proto|.*graphql|Dockerfile)$'] = s:lightBlue " sets the color for files ending with _spec.rb
 let g:NERDTreeSyntaxEnabledExtensions = ['c'] " enable highlight to .hbs and .lhs files with default colors
 let g:NERDTreeSyntaxEnabledExactMatches = ['.git', 'node_modules', 'favicon.ico'] " enable highlight for dropbox and node_modules folders, and favicon.ico files with default colors
@@ -413,11 +404,11 @@ let g:webdevicons_enable_airline_statusline = 1
 let g:webdevicons_enable_startify = 1
 let g:webdevicons_enable_flagship_statusline = 1
 let g:WebDevIconsNerdTreeGitPluginForceVAlign = 1
-let g:WebDevIconsUnicodeDecorateFolderNodesDefaultSymbol = ' '
-let g:DevIconsDefaultFolderOpenSymbol = ' '
+"let g:WebDevIconsUnicodeDecorateFolderNodesDefaultSymbol = ' '
+"let g:DevIconsDefaultFolderOpenSymbol = ' '
 let g:DevIconsEnableFoldersOpenClose = 1
 let g:DevIconsEnableFolderPatternMatching = 1
-let g:WebDevIconsDefaultFolderSymbolColor = s:lightPurple " sets the color for folders that did not match any rule
+let g:WebDevIconsDefaultFolderSymbolColor = s:lightBlue " sets the color for folders that did not match any rule
 let g:WebDevIconsUnicodeDecorateFileNodesExtensionSymbols = {} " needed
 let g:WebDevIconsUnicodeDecorateFileNodesExtensionSymbols['css'] = '' 
 let g:WebDevIconsUnicodeDecorateFileNodesExtensionSymbols['html'] = '' 
@@ -447,19 +438,13 @@ let g:WebDevIconsUnicodeDecorateFileNodesExactSymbols['Dockerfile'] = ''
 :highlight SignColumn ctermbg=NONE
 ":hi PmenuThumb ctermbg=green ctermfg=68
 ":hi PmenuSbar ctermbg=green ctermfg=68     
-:hi Pmenu ctermbg=black ctermfg=85
-:hi PmenuSel ctermbg=57 ctermfg=015
+:hi Pmenu ctermbg=7 ctermfg=172
+:hi PmenuSel ctermbg=172 ctermfg=15
 ":highlight Visual cterm=NONE ctermbg=42 ctermfg=238
-:highlight Visual ctermbg=93
-
+:highlight Visual ctermbg=154
 "set foldmethod=syntax
-
 "autocmd BufWritePost, BufWinLeave, WinLeave ?* mkview
 "autocmd BufRead, BufWinEnter ?* silent loadview
 
 "                                                                             
-
-
-
-
 

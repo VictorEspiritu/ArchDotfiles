@@ -1,0 +1,30 @@
+{
+    "dark": [
+        "#AEAEAE",
+        "#AEAEAE"
+    ],
+    "dark2": [
+        "#C7C7C7",
+        "#C7C7C7"
+    ],
+    "grey": [
+        "#F54C4C",
+        "#F54C4C"
+    ],
+    "light": [
+        "#101011",
+        "#101011"
+    ],
+    "primary": [
+        "#FE9C29",
+        "#FE9C29"
+    ],
+    "secondary": [
+        "#BB1F81",
+        "#BB1F81"
+    ],
+    "tertiary": [
+        "#C64747",
+        "#C64747"
+    ]
+}
