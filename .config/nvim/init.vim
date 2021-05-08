@@ -319,20 +319,7 @@ set autoread
 set spelllang=en,es "Corrige palabras usando diccionarios de ingles y espanol
 au FocusGained * :checktime
 
-set t_md=
-
-:highlight LineNr ctermfg=60
-:set fillchars+=vert:\ 
-":hi VertSplit ctermfg=8
-:highlight VertSplit cterm=NONE
-":hi! Comment ctermfg=DarkGrey         
-:hi! Comment ctermfg=8
-:set foldcolumn=0
-hi Folded ctermbg=black
-
-":AirlineTheme lucius                         
-let g:airline_theme='behelit'
-:hi Directory guifg=#FFF000 ctermfg=97
+set fillchars+=stl:-,stlnc:-,vert:\ 
 
 "NERD Tree Styles
 let s:brown = "905532"
@@ -353,10 +340,6 @@ let s:blackShell = "747474"
 let s:rspec_red = 'FE405F'
 let s:git_orange = 'F54D27'
 
-
-set guifont=DroidSansMono_Nerd_Font:h11
-
-let NERDTreeMinimalUI = 1
 let NERDTreeDirArrows = 1
 let g:NERDSpaceDelimis = 1
 let g:NERDCompactSexyComs = 1
@@ -419,14 +402,14 @@ let g:DevIconsEnableFoldersOpenClose = 1
 let g:DevIconsEnableFolderPatternMatching = 1
 let g:WebDevIconsDefaultFolderSymbolColor = s:lightPurple " sets the color for folders that did not match any rule
 let g:WebDevIconsUnicodeDecorateFileNodesExtensionSymbols = {} " needed
-let g:WebDevIconsUnicodeDecorateFileNodesExtensionSymbols['css'] = '' 
+let g:WebDevIconsUnicodeDecorateFileNodesExtensionSymbols['css'] = '' 
 let g:WebDevIconsUnicodeDecorateFileNodesExtensionSymbols['html'] = '' 
-let g:WebDevIconsUnicodeDecorateFileNodesExtensionSymbols['js'] = '' 
+let g:WebDevIconsUnicodeDecorateFileNodesExtensionSymbols['js'] = '' 
 let g:WebDevIconsUnicodeDecorateFileNodesExtensionSymbols['java'] = '' 
 let g:WebDevIconsUnicodeDecorateFileNodesExtensionSymbols['sql'] = '' 
 let g:WebDevIconsUnicodeDecorateFileNodesExtensionSymbols['rb'] = '' 
-let g:WebDevIconsUnicodeDecorateFileNodesExtensionSymbols['py'] = '' 
-let g:WebDevIconsUnicodeDecorateFileNodesExtensionSymbols['md'] = '' 
+let g:WebDevIconsUnicodeDecorateFileNodesExtensionSymbols['py'] = '' 
+let g:WebDevIconsUnicodeDecorateFileNodesExtensionSymbols['md'] = '' 
 let g:WebDevIconsUnicodeDecorateFileNodesExtensionSymbols['gs'] = '' 
 let g:WebDevIconsUnicodeDecorateFileNodesExtensionSymbols['xml'] = '' 
 let g:WebDevIconsUnicodeDecorateFileNodesExtensionSymbols['proto'] = '' 
@@ -437,29 +420,46 @@ let g:WebDevIconsUnicodeDecorateFileNodesPatternSymbols['\(.pem\|.crt\|.cer\|.p1
 let g:WebDevIconsUnicodeDecorateFileNodesPatternSymbols['\(.jpg\|.png\|.svg\)$'] = ''
 let g:WebDevIconsUnicodeDecorateFileNodesPatternSymbols['\(.mod\|.jar\)$'] = ''
 let g:WebDevIconsUnicodeDecorateFileNodesPatternSymbols['\(.json\|.yml\|.properties\|.toml\)$'] = ''
-let g:WebDevIconsUnicodeDecorateFileNodesPatternSymbols['docker-compose.yml$'] = ''
-let g:WebDevIconsUnicodeDecorateFileNodesPatternSymbols['Dockerfile$'] = ''
+let g:WebDevIconsUnicodeDecorateFileNodesPatternSymbols['docker-compose.yml$'] = ''
+let g:WebDevIconsUnicodeDecorateFileNodesPatternSymbols['Dockerfile$'] = ''
 
 let g:WebDevIconsUnicodeDecorateFileNodesExactSymbols = {} " needed
 let g:WebDevIconsUnicodeDecorateFileNodesExactSymbols['.gitignore'] = ''
-let g:WebDevIconsUnicodeDecorateFileNodesExactSymbols['Dockerfile'] = ''
+let g:WebDevIconsUnicodeDecorateFileNodesExactSymbols['Dockerfile'] = ''
 
-:highlight SignColumn ctermbg=NONE
-":hi PmenuThumb ctermbg=green ctermfg=68
-":hi PmenuSbar ctermbg=green ctermfg=68     
-:hi Pmenu ctermbg=black ctermfg=85
-:hi PmenuSel ctermbg=57 ctermfg=015
-":highlight Visual cterm=NONE ctermbg=42 ctermfg=238
-:highlight Visual ctermbg=93
 
-"set foldmethod=syntax
+"# ALL DISTROS
+:highlight VertSplit cterm=NONE
+:set foldcolumn=0
+let NERDTreeMinimalUI = 1
 
-"autocmd BufWritePost, BufWinLeave, WinLeave ?* mkview
-"autocmd BufRead, BufWinEnter ?* silent loadview
+"# Archlinux Styles
+":hi! Comment ctermfg=8
+":highlight LineNr ctermfg=60
+":highlight SignColumn ctermbg=NONE
+"hi Folded ctermbg=black
+":hi Pmenu ctermbg=black ctermfg=85
+":hi PmenuSel ctermbg=57 ctermfg=015
+":highlight Visual ctermbg=93
+"let g:airline_theme='behelit'
+":hi Directory guifg=#FFF000 ctermfg=97
+"set guifont=DroidSansMono_Nerd_Font:h11
+
+
+"# Ubuntu Styles
+:hi! Comment ctermfg=DarkGrey         
+:hi VertSplit ctermbg=None 
+:highlight LineNr ctermfg=DarkGrey
+:highlight SignColumn ctermbg=black
+let g:airline_theme='monochrome'
+:hi Directory guifg=#FFF000 ctermfg=97
+set guifont=DroidSansMono\ Nerd\ Font:h11
+
+
 
 "                                                                             
 
-
+"        
 
 
 
