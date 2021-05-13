@@ -20,7 +20,6 @@
 # Press: Ctrl+w+f --> open split window with a file name selected !file must be exists
 # Press: Ctrl+w+gf --> open new tab with a file name selected !file must be exists
 
-
 # IDE OPERATIONS
 # Press: gg     --> go to start line of page 
 # Press: j      --> go to down line 
@@ -60,7 +59,6 @@
 # IDE SNIPPETS
 # Press: ctor  --> public constructor
 
-
 # NERD TREE
 # Press: f2  --> open sidebar
 # Press: t   --> open file in a new tab 
@@ -73,11 +71,9 @@
 # Press: [:G commit]
 # Press: [:G log]
 
-
 # PLUGINS OPERATIONS
 # Press: [space]+e --> show list of extensions of plugins 
 # Press: [space]+c+java.open.serverlog --> show logs of server 
-
 
 # VIM BASIC COMMANDS
 # Press: i     --> Insert cursor in begining to word 
@@ -122,15 +118,5 @@
 #[\ca] --> Change type comments 
 #[\cA] --> final comment 
 #[\cu] --> Uncomment Line
-
-
-
-
-
-
-
-
-
-
 
 
